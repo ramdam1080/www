@@ -63,10 +63,18 @@
         echo " FONCTIONNNNEEE!!!!!!!!!!!!!!!!!!!!!!!" ;
     };
     test();
-    $phrase ="la phrase je nes pas d'inspi";
+    $phrase = "\n la phrase je nes pas d'inspi ";
 
     echo strtoupper($phrase);
+    echo substr_replace($phrase,"g",5,1);
+    echo strlen($phrase);
+    echo strtolower( strtoupper($phrase));
+    echo substr($phrase,0,-3);
+    echo abs($integer);
+    $tb = [1,2,3];
+    echo max($tb);
+    echo min($tb);
+    echo  round( rand());
+
     
-
     ?>
-
