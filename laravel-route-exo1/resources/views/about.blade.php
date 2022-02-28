@@ -7,16 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <h1>je suis dans la page about </h1>
-
+    <h1>je suis dans about</h1>
     <nav>
-        <a href="{{ url('/about') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">About</a>
-        <a href="{{ url('/welcome') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">welcome</a>
-    
-  
+        <a href="{{ url('/about') }}"> about</a>
+        <a href="{{ url('/welcome') }}"> welcome</a>
+
+
     </nav>
-
-
 </body>
 </html>

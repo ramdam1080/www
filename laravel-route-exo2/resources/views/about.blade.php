@@ -7,15 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-$city  = "San Francisco";
-$state = "CA";
-$event = "SIGGRAPH";
 
-$location_vars = array("city", "state");
+    <h1>Page About</h1>
 
-$result = compact("event", $location_vars);
-print_r($result);
-?>
+    <p>Je m'appelle {{ $prenom }} {{ $nom }}.</p>
+
 </body>
 </html>

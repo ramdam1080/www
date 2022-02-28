@@ -13,18 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/', function () {
-    return 'Bonjours chere utilisateur';
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
+// Route::get('/about', function () {
+//     return view('about');
+// });
+// Route::get('/', function () {
+//     return 'Bonjours chere utilisateur';
+// });
 
-Route::get("/{utilisateur}", function ($utilisateur) {
+// Route::get("/{utilisateur}", function ($utilisateur) {
 
-    return "bienvenu dans mon site " . "  bonjour " . $utilisateur  ;
+//     return "bienvenu dans mon site " . "  bonjour " . $utilisateur  ;
     
-    });
+//     });
+
+Route::get('/welcome',function(){   
+    return view("welcome");
+});
+Route::get('/about',function(){   
+    return view("about");
+});
