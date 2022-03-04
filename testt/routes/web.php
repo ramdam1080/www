@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Jsp;
-use App\Http\Controllers\testController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +13,6 @@ use App\Http\Controllers\testController;
 |
 */
 
-Route::get('/', [Jsp::class, 'index']);
-Route::get('/a', [testController::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});

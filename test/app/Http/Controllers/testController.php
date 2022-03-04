@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Jsp extends Controller
+class testController extends Controller
 {
     public function index(){
-        return view("welcome");
+        return view("test");
     }
 }
- 
