@@ -34,10 +34,14 @@ Route::post('/tbimg/destroy/{id}',[imgControllers::class,"destroy"])->name("img.
 Route::get('/tbimg/edit/{id}',[imgControllers::class,"edit"])->name("img.edit");
 Route::post('/tbimg/update/{id}',[imgControllers::class,"update"])->name("img.update");
 
+// banner
 Route::get('/tbbanner',[BannerController::class,"index"])->name("banner.index");
 Route::post('/tbbanner/destroy/{id}',[BannerController::class,"destroy"])->name("banner.destroy");
 Route::get('/tbbanner/edit/{id}',[BannerController::class,"edit"])->name("banner.edit");
 Route::post('/tbbanner/update/{id}',[BannerController::class,"update"])->name("banner.update");
+Route::get('/tbbanner/create',[BannerController::class,"create"])->name("banner.create");
+Route::post('/tbbanner/store',[BannerController::class,"store"])->name("banner.store");
+// fin banner
 
 Route::get('/tbbusproj',[sectionController::class,"index"])->name("section.index");
 Route::post('/tbbusproj/destroy/{id}',[sectionController::class,"destroy"])->name("section.destroy");
