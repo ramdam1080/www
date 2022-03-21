@@ -6,8 +6,16 @@
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
 }
+.sidebar::-webkit-scrollbar{
+  width: 5px;
+  background-color: gray;
+}
+.sidebar::-webkit-scrollbar-thumb{
+  background-color: white;
+}
 .sidebar{
   position: fixed;
+  overflow-y: scroll;
   left: 0;
   top: 0;
   height: 100%;

@@ -3,7 +3,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="{{ asset($img[0]->img) }}" alt="" class="img-fluid rounded-circle">
+        <img src="{{ asset("img/" . $img[0]->img) }}" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">{{ $title[0]->title }}</a></h1>
         <div class="social-links mt-3 text-center">
           @foreach ($header as $item)    

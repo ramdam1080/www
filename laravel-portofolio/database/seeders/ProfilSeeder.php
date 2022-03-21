@@ -17,7 +17,7 @@ class Profilseeder extends Seeder
     {
         //
         DB::table("profils")->insert([
-            "img"=>"img/profile-img.jpg"
+            "img"=>"profile-img.jpg"
         ]);
     }
 }

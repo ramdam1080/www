@@ -14,6 +14,8 @@ class FooterController extends Controller
      */
     public function index()
     {
+        $footer= footer::all();
+        return view("back/pages/tableau/footer",compact("footer"));
         //
     }
 
@@ -25,6 +27,7 @@ class FooterController extends Controller
     public function create()
     {
         //
+        return view("back/pages/create/createfooter");
     }
 
     /**
@@ -36,6 +39,11 @@ class FooterController extends Controller
     public function store(Request $request)
     {
         //
+        $footer = new footer;
+        $footer->text1 = $request->text1;
+        $footer->text2 = $request->text2;
+        $footer->save();
+        return redirect()->route("footer.index")->with("edit","le contenue a bien été modifier");
     }
 
     /**
@@ -44,8 +52,10 @@ class FooterController extends Controller
      * @param  \App\Models\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function show(footer $footer)
+    public function show($id,footer $footer)
     {
+        $footer = footer::find($id);
+        return view("back/pages/show/showfooter",compact("footer"));
         //
     }
 
@@ -55,8 +65,10 @@ class FooterController extends Controller
      * @param  \App\Models\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function edit(footer $footer)
+    public function edit($id,footer $footer)
     {
+        $footer= footer::find($id);
+        return view("back/pages/edit/editfooter",compact("footer"));
         //
     }
 
@@ -67,8 +79,13 @@ class FooterController extends Controller
      * @param  \App\Models\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, footer $footer)
+    public function update($id,Request $request, footer $footer)
     {
+        $footer = footer::find($id);
+        $footer->text1 = $request->text1;
+        $footer->text2 = $request->text2;
+        $footer->save();
+        return redirect()->route("footer.index")->with("edit","le contenue a bien été modifier");
         //
     }
 
@@ -78,8 +95,11 @@ class FooterController extends Controller
      * @param  \App\Models\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(footer $footer)
+    public function destroy($id,footer $footer)
     {
         //
+        $footer = footer::find($id);
+        $footer->delete();
+        return redirect()->back()->with("destroy","sa a bien été suprimer");
     }
 }

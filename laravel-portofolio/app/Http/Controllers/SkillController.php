@@ -14,6 +14,8 @@ class SkillController extends Controller
      */
     public function index()
     {
+        $skill = Skill::all();
+        return view("back/pages/tableau/skill",compact("skill"));
         //
     }
 
@@ -24,6 +26,7 @@ class SkillController extends Controller
      */
     public function create()
     {
+        return view("back/pages/create/createskill");
         //
     }
 
@@ -35,7 +38,16 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $skill = new Skill;
+            $request->validate([
+                "pourcent"=>"required|integer",
+                "value"=>"required|integer",
+            ]);
+            $skill->nom = $request->nom;
+            $skill->pourcent = $request->pourcent;
+            $skill->value = $request->value;
+            $skill->save();
+            return redirect()->route("skill.index")->with("create","sa a bien été crée");
     }
 
     /**
@@ -44,8 +56,10 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function show(Skill $skill)
+    public function show($id,Skill $skill)
     {
+        $skill = Skill::find($id);
+        return view("back/pages/show/showskill",compact("skill"));
         //
     }
 
@@ -55,8 +69,10 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function edit(Skill $skill)
+    public function edit($id,Skill $skill)
     {
+        $skill = Skill::find($id);
+        return view("back/pages/edit/editskill",compact("skill"));
         //
     }
 
@@ -67,8 +83,19 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update($id,Request $request, Skill $skill)
     {
+        $skill = Skill::find($id);
+        $request->validate([
+            "pourcent"=>"required|integer",
+            "value"=>"required|integer",
+        ]);
+        $skill->nom = $request->nom;
+        $skill->pourcent = $request->pourcent;
+        $skill->value = $request->value;
+        $skill->save();
+        return redirect()->route("skill.index")->with("edit","vous avez bien modifier le contenue");
+
         //
     }
 
@@ -78,8 +105,17 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id,Skill $skill)
     {
+        $skill = Skill::find($id);
+        $skillAll = Skill::all();
+        if (count($skillAll)>1) {
+            $skill->delete();
+            return redirect()->back()->with("destroy","sa a bien été suprimer");
+        }else {
+            
+            return redirect()->back()->with("destroy","vous ne pouvez pas suprimmer quand il reste que 1");
+        }
         //
     }
 }

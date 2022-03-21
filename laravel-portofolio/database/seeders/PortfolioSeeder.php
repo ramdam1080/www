@@ -17,55 +17,55 @@ class PortfolioSeeder extends Seeder
     {
         //
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-1.jpg",
+            "img"=>"portfolio/portfolio-1.jpg",
             "filter"=>"filter-app",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-2.jpg",
+            "img"=>"portfolio/portfolio-2.jpg",
             "filter"=>"filter-web",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-3.jpg",
+            "img"=>"portfolio/portfolio-3.jpg",
             "filter"=>"filter-app",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-4.jpg",
+            "img"=>"portfolio/portfolio-4.jpg",
             "filter"=>"filter-card",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-5.jpg",
+            "img"=>"portfolio/portfolio-5.jpg",
             "filter"=>"filter-web",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-6.jpg",
+            "img"=>"portfolio/portfolio-6.jpg",
             "filter"=>"filter-app",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-7.jpg",
+            "img"=>"portfolio/portfolio-7.jpg",
             "filter"=>"filter-card",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-8.jpg",
+            "img"=>"portfolio/portfolio-8.jpg",
             "filter"=>"filter-card",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"
         ]);
         DB::table("portfolios")->insert([
-            "img"=>"img/portfolio/portfolio-9.jpg",
+            "img"=>"portfolio/portfolio-9.jpg",
             "filter"=>"filter-web",
             "icone1"=>"<i class='bx bx-plus'></i>",
             "icone2"=>"<i class='bx bx-link'></i>"

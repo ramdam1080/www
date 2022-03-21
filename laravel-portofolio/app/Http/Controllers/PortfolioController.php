@@ -14,8 +14,11 @@ class PortfolioController extends Controller
      */
     public function index()
     {
+        $portfolio = portfolio::all();
+        return view('back/pages/tableau/portfolio',compact("portfolio"));
         //
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,6 +27,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
+        return view("back/pages/create/createportfolio");
         //
     }
 
@@ -35,6 +39,15 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
+        $portfolio = new portfolio;
+        $portfolio->img = $request->file("img")->hashName();
+        $portfolio->filter = $request->filter;
+        $portfolio->icone1 = $request->icone1;
+        $portfolio->icone2 = $request->icone2;
+        $portfolio->save();
+        $request->file("img")->storePublicly("img","public");
+        return redirect()->route("portfolio.index")->with("create","sa a bien été crée");
+
         //
     }
 
@@ -44,8 +57,10 @@ class PortfolioController extends Controller
      * @param  \App\Models\portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function show(portfolio $portfolio)
+    public function show($id,portfolio $portfolio)
     {
+        $portfolio = portfolio::find($id);
+        return view("back/pages/show/showportfolio",compact("portfolio"));
         //
     }
 
@@ -55,9 +70,11 @@ class PortfolioController extends Controller
      * @param  \App\Models\portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(portfolio $portfolio)
+    public function edit($id,portfolio $portfolio)
     {
         //
+        $portfolio = portfolio::find($id);
+        return view("back/pages/edit/editportfolio",compact("portfolio"));
     }
 
     /**
@@ -67,9 +84,17 @@ class PortfolioController extends Controller
      * @param  \App\Models\portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, portfolio $portfolio)
+    public function update($id,Request $request, portfolio $portfolio)
     {
         //
+        $portfolio = portfolio::find($id);
+        $portfolio->img = $request->file("img")->hashName();
+        $portfolio->filter = $request->filter;
+        $portfolio->icone1 = $request->icone1;
+        $portfolio->icone2 = $request->icone2;
+        $portfolio->save();
+        $request->file("img")->storePublicly("img","public");
+        return redirect()->route("portfolio.index")->with("edit","sa a bien été modifié");
     }
 
     /**
@@ -78,8 +103,18 @@ class PortfolioController extends Controller
      * @param  \App\Models\portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(portfolio $portfolio)
+    public function destroy($id,portfolio $portfolio)
     {
         //
+        $portfolio = portfolio::find($id);
+        $portfolioAll = portfolio::all();
+        if (count($portfolioAll)>1) {
+            $portfolio->delete();
+            return redirect()->back()->with("destroy","sa a bien été suprimé");
+        }else{
+            return redirect()->back()->with("destroy","sa na pas été surpimer il n y a pas asser de contenue");
+            
+        }
+
     }
 }

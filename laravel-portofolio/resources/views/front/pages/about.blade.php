@@ -11,7 +11,7 @@
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="{{ asset($img[0]->img) }}" class="img-fluid" alt="">
+            <img src="{{ asset("img/" . $img[0]->img) }}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>{!! $title[2]->title !!}</h3>
@@ -22,7 +22,7 @@
               @for ($i = 0; $i < count($about); $i++)
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="{{ $about[$i]->icone }}"></i> <strong>{{ $about[$i]->strong }}</strong> <span>{{ $about[$i]->span }}</span></li>
+                  <li>{!! $about[$i]->icone !!} <strong>{{ $about[$i]->strong }}</strong> <span>{{ $about[$i]->span }}</span></li>
                   
                   
                 </ul>

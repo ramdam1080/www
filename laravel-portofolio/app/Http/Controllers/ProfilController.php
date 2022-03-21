@@ -49,6 +49,8 @@ class ProfilController extends Controller
      */
     public function show($id)
     {
+        $profil = Profil::find($id);
+        return view("back/pages/show/showprofil",compact("profil"));
         //
     }
 

@@ -22,14 +22,15 @@
             @foreach ($profil as $item)
             
             <tr>
+                {{-- {{ dd("img/".$profil[0]->img); }} --}}
                 <th  scope="row">{{ $profil[0]->id }}</th>
-                <td >  <img width="100px"  src="{{ asset($profil[0]->img ) }}" alt=""></td>
+                <td >  <img width="100px"  src="{{ asset("img/" . $profil[0]->img) }}" alt=""></td>
                 
                 
                 <td class="d-flex gap-3 py-5">
                     
-                    <a href="{{ route("profil.edit",$profil[0]->id) }}" class="btn btn-primary">edit</a>
-                    {{-- <a href="{{ route("title.show",$profil->id) }}" class="btn btn-secondary">show</a> --}}
+                    <a href="{{ route("profil.edit",$item->id) }}" class="btn btn-primary">edit</a>
+                    <a href="{{ route("profil.show",$item->id) }}" class="btn btn-secondary">show</a>
                 </td>
                 
             </tr>

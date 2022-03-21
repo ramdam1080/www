@@ -15,6 +15,8 @@ class FactController extends Controller
     public function index()
     {
         //
+        $fact = Fact::all();
+        return view("back/Pages/tableau/fact",compact("fact"));
     }
 
     /**
@@ -25,6 +27,8 @@ class FactController extends Controller
     public function create()
     {
         //
+        return view("back/pages/create/createfact");
+
     }
 
     /**
@@ -35,6 +39,23 @@ class FactController extends Controller
      */
     public function store(Request $request)
     {
+        $factAll = Fact::all();
+        $request->validate([
+            "pourcent"=>"required|integer",
+            "value"=>"required|integer",
+        ]);
+        if (count($factAll)<4) {
+            $fact = new Fact;
+            $fact->icone = $request->icone;
+            $fact->nombre = $request->nombre;
+            $fact->strong = $request->strong;
+            $fact->text = $request->text;
+            $fact->save();
+            return redirect()->route("fact.index")->with("create","sa a bien été crée");
+        }else{
+            
+            return redirect()->route("fact.index")->with("create","vous avez attein le nombre maximum");
+        }
         //
     }
 
@@ -44,19 +65,23 @@ class FactController extends Controller
      * @param  \App\Models\Fact  $fact
      * @return \Illuminate\Http\Response
      */
-    public function show(Fact $fact)
+    public function show($id,Fact $fact)
     {
         //
+        $fact = Fact::find($id);
+        return view("back/pages/show/showfact",compact("fact"));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Fact  $fact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fact $fact)
+    public function edit($id,Fact $fact)
     {
+        $fact = Fact::find($id);
+        return view("back/pages/edit/editfact",compact("fact"));
         //
     }
 
@@ -67,19 +92,38 @@ class FactController extends Controller
      * @param  \App\Models\Fact  $fact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fact $fact)
+    public function update($id,Request $request)
     {
         //
+        $fact = Fact::find($id);
+        $request->validate([
+            "pourcent"=>"required|integer",
+            "value"=>"required|integer",
+        ]);
+        $fact->icone = $request->icone;
+        $fact->nombre = $request->nombre;
+        $fact->strong = $request->strong;
+        $fact->text = $request->text;
+        $fact->save();
+        return redirect()->route("fact.index")->with("edit","sa a bien été modifier");
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Fact  $fact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fact $fact)
+    public function destroy($id,Fact $fact)
     {
-        //
+        $factAll = Fact::all();
+        $fact = Fact::find($id);
+        if (count($factAll)>1) {
+            $fact->delete();
+            return redirect()->back()->with("destroy","sa a bien été suprimer");
+        }else{
+            
+            return redirect()->route("route.index")->with("destroy","vous ne pouvez pas suprimer le dernier element");
+        }
     }
 }

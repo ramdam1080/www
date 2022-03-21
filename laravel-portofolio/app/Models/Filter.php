@@ -10,6 +10,8 @@ class Filter extends Model
     use HasFactory;
     protected $table ="filters";
     protected $fillable = [
-        "filter"
+        "filter",
+        "class",
+        "data"
     ];
 }

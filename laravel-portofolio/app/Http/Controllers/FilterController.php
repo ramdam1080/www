@@ -14,6 +14,8 @@ class FilterController extends Controller
      */
     public function index()
     {
+        $filter = Filter::all();
+        return view("back/pages/tableau/filter",compact("filter"));
         //
     }
 
@@ -24,6 +26,7 @@ class FilterController extends Controller
      */
     public function create()
     {
+        return view("back/pages/create/createfilter");
         //
     }
 
@@ -36,6 +39,12 @@ class FilterController extends Controller
     public function store(Request $request)
     {
         //
+        $filter = new Filter;
+        $filter->filter = $request->filter;
+        $filter->class = $request->class;
+        $filter->data = $request->data;
+        $filter->save();
+        return redirect()->route("filter.index")->with("create","sa a bien été crée");
     }
 
     /**
@@ -44,8 +53,10 @@ class FilterController extends Controller
      * @param  \App\Models\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function show(Filter $filter)
+    public function show($id,Filter $filter)
     {
+        $filter = Filter::find($id);
+        return view("back/pages/show/showfilter",compact("filter"));
         //
     }
 
@@ -55,8 +66,10 @@ class FilterController extends Controller
      * @param  \App\Models\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Filter $filter)
+    public function edit($id,Filter $filter)
     {
+        $filter = Filter::find($id);
+        return view("back/Pages/edit/editfilter",compact("filter"));
         //
     }
 
@@ -67,9 +80,16 @@ class FilterController extends Controller
      * @param  \App\Models\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Filter $filter)
+    public function update($id,Request $request, Filter $filter)
     {
         //
+        $filter = Filter::find($id);
+        $filter->filter = $request->filter;
+        $filter->class = $request->class;
+        $filter->data = $request->data;
+        $filter->save();
+        return redirect()->route("filter.index")->with("edit","sa a bien été modifier");
+
     }
 
     /**
@@ -78,8 +98,11 @@ class FilterController extends Controller
      * @param  \App\Models\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Filter $filter)
+    public function destroy($id,Filter $filter)
     {
+        $filter = Filter::find($id);
+        $filter->delete();
+        return redirect()->back()->with("destroy", " sa a bien été surpimer");
         //
     }
 }

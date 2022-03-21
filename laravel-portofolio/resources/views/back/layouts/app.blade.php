@@ -7,6 +7,7 @@
     <title>Document</title>
     <link href="{{ asset("vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link href="{{ asset('/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 </head>
 <body><!DOCTYPE html>
     <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -61,32 +62,53 @@
            <span class="tooltip">profils</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/about">
              <i class='bx bx-folder' ></i>
-             <span class="links_name">File Manager</span>
+             <span class="links_name">about</span>
            </a>
-           <span class="tooltip">Files</span>
+           <span class="tooltip">about</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/fact">
              <i class='bx bx-cart-alt' ></i>
-             <span class="links_name">Order</span>
+             <span class="links_name">fact</span>
            </a>
-           <span class="tooltip">Order</span>
+           <span class="tooltip">fact</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/skill">
              <i class='bx bx-heart' ></i>
-             <span class="links_name">Saved</span>
+             <span class="links_name">skill</span>
            </a>
-           <span class="tooltip">Saved</span>
+           <span class="tooltip">skill</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/filter">
              <i class='bx bx-cog' ></i>
-             <span class="links_name">Setting</span>
+             <span class="links_name">filter(portfolio)</span>
            </a>
-           <span class="tooltip">Setting</span>
+           <span class="tooltip">filter(portfolio)</span>
+         </li>
+         <li>
+           <a href="/portfolio">
+             <i class='bx bx-cog' ></i>
+             <span class="links_name">portfolio</span>
+           </a>
+           <span class="tooltip">portfolio</span>
+         </li>
+         <li>
+           <a href="/testimonial">
+             <i class='bx bx-cog' ></i>
+             <span class="links_name">testimonial</span>
+           </a>
+           <span class="tooltip">testimonial</span>
+         </li>
+         <li>
+           <a href="/footer">
+             <i class='bx bx-cog' ></i>
+             <span class="links_name">footer</span>
+           </a>
+           <span class="tooltip">footer</span>
          </li>
          <li class="profile">
              <div class="profile-details">
