@@ -9,9 +9,12 @@
             {{ session()->get("edit") }}
         </div>
     @endif
+
     @if (session()->has("create"))
         <div class="alert alert-warning text-center">
-            {{ session()->get("create") }}
+            {{ session()->get("create") }} <form action="{{ route("testimonial.choix") }}" method="POST">
+                @csrf
+                <button type="submit">oui</button> </form><button>non</button>
         </div>
     @endif
     @if (session()->has("destroy"))
@@ -28,6 +31,7 @@
                 <th scope="col">h3</th>
                 <th scope="col">h4</th>
                 <th scope="col">data</th>
+                <th scope="col">bool</th>
                 <th scope="col">button</th>
             </tr>
         </thead>
@@ -37,10 +41,11 @@
             <tr>
                 <th  scope="row">{{ $item->id }}</th>
                 <td >  <img width="100px"  src="{{ asset("img/" . $item->img) }}" alt=""></td>
-                <td>{{ $item->paragraphe }}</td>
+                <td>{!! $item->paragraphe !!}</td>
                 <td>{{ $item->h3}}</td>
                 <td>{{ $item->h4}}</td>   
                 <td>{{ $item->data}}</td>   
+                <td>{{ $item->bool}}</td>   
                 
                 <td class="d-flex gap-3 py-5">
                     <form action="{{ route("testimonial.destroy",$item->id) }}" method="POST">

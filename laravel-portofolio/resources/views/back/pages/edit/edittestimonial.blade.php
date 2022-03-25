@@ -31,6 +31,12 @@
         <input type="text" class="form-control" name="data" value="{{ $testimonial->data }}" id="exampleInputEmail1" aria-describedby="emailHelp">
         <div id="emailHelp" class="form-text"></div>
     </div>
+    <div class="mb-3 ">
+        <label for="chekbox" class="form-label">Voulez-vous le rendre en prioritère</label>
+        <input  type="checkbox" class="form-check-input" name="bool" value="true" id="chekbox" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+    </div>
+    
     
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

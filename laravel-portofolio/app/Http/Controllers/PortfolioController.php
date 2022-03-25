@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\portfolio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
@@ -87,7 +89,12 @@ class PortfolioController extends Controller
     public function update($id,Request $request, portfolio $portfolio)
     {
         //
-        $portfolio = portfolio::find($id);
+        $portfolio = portfolio::find($id, );
+        $destination = "img/" . $portfolio->img;
+        if (File::exists($destination)) {
+            File::delete($destination);
+        }
+        
         $portfolio->img = $request->file("img")->hashName();
         $portfolio->filter = $request->filter;
         $portfolio->icone1 = $request->icone1;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class TestimonialController extends Controller
 {
@@ -47,7 +48,7 @@ class TestimonialController extends Controller
         $testimonial->data = $request->data;
         $testimonial->save();
         $request->file("img")->storePublicly("img","public");
-        return redirect()->route("testimonial.index")->with("create","sa a bien été crée");
+        return redirect()->route("testimonial.index")->with("create","sa a bien été crée voulez vous le passez en premier ?");
 
         //
     }
@@ -89,13 +90,29 @@ class TestimonialController extends Controller
     {
         //
         $testimonial = Testimonial::find($id);
-        $testimonial->img = $request->file("img")->hashName();
+     
+        $destination = "img/" . $testimonial->img;
+        
+        if ($request->img == null) {
+                
+        }else {
+              $testimonial->img = $request->file("img")->hashName();
+            $request->file("img")->storePublicly("img","public");
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+        }
         $testimonial->paragraphe = $request->paragraphe;
         $testimonial->h3 = $request->h3;
         $testimonial->h4 = $request->h4;
         $testimonial->data = $request->data;
+if ($request->bool === "true") {
+    $testimonial->bool = $request->bool;
+}else{
+    $testimonial->bool = "no";
+}
+
         $testimonial->save();
-        $request->file("img")->storePublicly("img","public");
         return redirect()->route("testimonial.index")->with("edit","sa a bien été modifié");
     }
 
@@ -111,7 +128,7 @@ class TestimonialController extends Controller
         $testimonial = Testimonial::find($id);
         $testimonialAll = Testimonial::all();
         if (count($testimonialAll)>1) {
-            $Testimonial->delete();
+            $testimonial->delete();
             return redirect()->back()->with("destroy","sa a bien été suprimé");
         }else{
             return redirect()->back()->with("destroy","sa na pas été surpimer il n y a pas asser de contenue");

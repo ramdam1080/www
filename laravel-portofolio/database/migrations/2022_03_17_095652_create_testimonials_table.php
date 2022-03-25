@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("h3");
             $table->string("h4");
             $table->integer("data");
+            $table->string("bool");
             $table->timestamps();
         });
     }

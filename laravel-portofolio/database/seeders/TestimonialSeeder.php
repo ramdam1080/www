@@ -27,7 +27,8 @@ class TestimonialSeeder extends Seeder
             "img"=>"testimonials/testimonials-1.jpg",
             "h3"=>"Saul Goodman",
             "h4"=>"Ceo &amp; Founder",
-            "data"=>100
+            "data"=>100,
+            "bool"=> "no",
 
         ]);
         DB::table("testimonials")->insert([
@@ -37,7 +38,8 @@ class TestimonialSeeder extends Seeder
             "img"=>"testimonials/testimonials-2.jpg",
             "h3"=>"Sara Wilsson",
             "h4"=>"Designer",
-            "data"=>100
+            "data"=>100,
+            "bool"=> "no",
 
         ]);
         DB::table("testimonials")->insert([
@@ -47,7 +49,8 @@ class TestimonialSeeder extends Seeder
             "img"=>"testimonials/testimonials-3.jpg",
             "h3"=>"Jena Karlis",
             "h4"=>"Store Owner",
-            "data"=>200
+            "data"=>200,
+            "bool"=> "no",
 
         ]);
         DB::table("testimonials")->insert([
@@ -57,7 +60,8 @@ class TestimonialSeeder extends Seeder
             "img"=>"testimonials/testimonials-4.jpg",
             "h3"=>"Matt brandon",
             "h4"=>"Freelancer",
-            "data"=>300
+            "data"=>300,
+            "bool"=> "no",
 
         ]);
         DB::table("testimonials")->insert([
@@ -67,8 +71,8 @@ class TestimonialSeeder extends Seeder
             "img"=>"testimonials/testimonials-5.jpg",
             "h3"=>"John Larson",
             "h4"=>"Entrepreneur",
-            "data"=>400
-
+            "data"=>400,
+            "bool"=> "no",
         ]);
     }
 }

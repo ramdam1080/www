@@ -12,6 +12,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\welcomeControllers;
 use App\Models\footer;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,16 +112,26 @@ Route::post("/testimonial/update/{id}",[TestimonialController::class,"update"])-
 Route::get("/testimonial/create",[TestimonialController::class,"create"])->name("testimonial.create");
 Route::post("/testimonial/store",[TestimonialController::class,"store"])->name("testimonial.store");
 Route::get("/testimonial/show/{id}",[TestimonialController::class,"show"])->name("testimonial.show");
+Route::post("/testimonial/choix",function (){
+    $test = Testimonial::all();
+
+    // $test->;
+    // foreach ($test as $item) {
+    //     $item->id++;
+    // }
+    // $last = $test[count($test)-1];
+    // $last->id = 1;
+    // $test->save();
+    // $last->save();
+    // return redirect()->back()->with("choix","il est bien devenu le premier de la liste");
+
+
+
+})->name("testimonial.choix");
 //fin
 
 //footer
-Route::get("/footer",[FooterController::class,"index"])->name("footer.index");
-Route::post("/footer/destroy/{id}",[FooterController::class,"destroy"])->name("footer.destroy");
-Route::get("/footer/edit/{id}",[FooterController::class,"edit"])->name("footer.edit");
-Route::post("/footer/update/{id}",[FooterController::class,"update"])->name("footer.update");
-Route::get("/footer/create",[FooterController::class,"create"])->name("footer.create");
-Route::post("/footer/store",[FooterController::class,"store"])->name("footer.store");
-Route::get("/footer/show/{id}",[FooterController::class,"show"])->name("footer.show");
 
+Route::resources('footers',FooterController::class);
 
 //fin

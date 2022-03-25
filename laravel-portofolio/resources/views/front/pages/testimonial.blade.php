@@ -15,7 +15,7 @@
                              <p>
                                 {!! $item->paragraphe !!}
                              </p>
-                             <img src="{{ asset($item->img) }}" class="testimonial-img"
+                             <img src="{{ asset("img/" . $item->img) }}" class="testimonial-img"
                                  alt="">
                              <h3>{{ $item->h3 }}</h3>
                              <h4>{!! $item->h4 !!}</h4>

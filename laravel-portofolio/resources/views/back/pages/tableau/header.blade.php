@@ -7,7 +7,7 @@
 
     @if (session()->has("edit"))
         <div class="alert alert-success text-center">
-            {{ session()->get("edit") }}
+            {{ session()->get("edit") }} 
         </div>
     @endif
     <table class="table table table-dark table-striped">

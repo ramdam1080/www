@@ -64,6 +64,7 @@ class AboutController extends Controller
     {
         //
         $about = About::find($id);
+        
         return view("back/pages/show/showabout",compact("about"));
     }
     
