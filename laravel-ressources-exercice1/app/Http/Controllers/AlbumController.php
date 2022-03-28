@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -15,10 +16,10 @@ class AlbumController extends Controller
     public function index()
     {
         $album = Album::all();
-        return view("pages/album");
+        return view("pages/album",compact("album"));
         //
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -27,9 +28,10 @@ class AlbumController extends Controller
     public function create()
     {
         //
-        return view("pages/")
+        $user = User::all(); 
+        return view("create/createalbum",compact("user"));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -39,8 +41,27 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $album = new Album;
+        $user = User::find($request->album); 
+        $request->validate([
+            "nom"=>"required",
+            "description"=>"required",
+            "auteur"=>"required",
+            "photo"=>"required|integer",
+        ]);
+        $album->nom = $request->nom;
+        $album->description = $request->description;
+        $album->auteur = $request->auteur;
+        $album->photo = $request->photo;
+        $user->album++;
+        $user->save();
+        
+        $album->save();
+        return redirect()->route("album.index")->with("create","sa a bien été crée");
+        
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -50,6 +71,7 @@ class AlbumController extends Controller
     public function show(Album $album)
     {
         //
+        return view("show/showalbum",compact("album"));
     }
 
     /**
@@ -61,8 +83,9 @@ class AlbumController extends Controller
     public function edit(Album $album)
     {
         //
+        return view("edit/editalbum",compact("album","user"));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -73,6 +96,18 @@ class AlbumController extends Controller
     public function update(Request $request, Album $album)
     {
         //
+        $request->validate([
+            "nom"=>"required",
+            "description"=>"required",
+            "auteur"=>"required",
+            "photo"=>"required|integer",
+        ]);
+        $album->nom = $request->nom;
+        $album->description = $request->description;
+        $album->auteur = $request->auteur;
+        $album->photo = $request->photo;
+        $album->save();
+        return redirect()->route("album.index")->with("edit","le changement a été fait");
     }
 
     /**
@@ -84,5 +119,7 @@ class AlbumController extends Controller
     public function destroy(Album $album)
     {
         //
+        $album->delete();
+        return redirect()->back()->with("destroy"," sa été suprimer");
     }
 }

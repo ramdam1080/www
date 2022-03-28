@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ class PhotoController extends Controller
     public function index()
     {
         //
+        $photo = Photo::all();
+        $photos = Photo::orderBy('updated_at','DESC')->get();
+        return view("pages/photo",compact("photo","photos"));
+
     }
 
     /**
@@ -25,6 +30,8 @@ class PhotoController extends Controller
     public function create()
     {
         //
+        $album = Album::all();
+        return view ("create/createphoto",compact("album"));
     }
 
     /**
@@ -36,6 +43,20 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
+        $album = Album::find($request->photo);
+        $request->validate([
+            "nom"=>"required",
+            "lien"=>"required",
+            "album"=>"required",
+        ]);
+        $photo = new Photo;
+        $photo->nom = $request->nom;
+        $photo->lien = $request->lien;
+        $photo->album = $request->album;
+        $album->photo++;
+        $album->save();
+        $photo->save();
+        return redirect()->route("photo.index")->with("create","sa a bien été crée");
     }
 
     /**
@@ -46,6 +67,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
+        return view('show/showphoto',compact("photo"));
         //
     }
 
@@ -58,6 +80,7 @@ class PhotoController extends Controller
     public function edit(Photo $photo)
     {
         //
+        return view("edit/editphoto",compact("photo"));
     }
 
     /**
@@ -69,6 +92,17 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
+        $request->validate([
+            "nom"=>"required",
+            "lien"=>"required",
+            "album"=>"required",
+        ]);
+        $photo->nom = $request->nom;
+        $photo->lien = $request->lien;
+        $photo->album = $request->album;
+        $photo->updated_at= now();
+        $photo->save();
+        return redirect()->route("photo.index")->with("edit","sa a bien été modifier");
         //
     }
 
@@ -80,6 +114,20 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
+        $photo->delete();
+        return redirect()->back()->with("destroy","ces bien suprimer");
         //
+    }
+    public function favori($id){
+        $favori = Photo::find($id);
+
+        if ($favori->favori === "non") {
+            $favori->favori = "favori";
+            $favori->save();
+        }else{
+            $favori->favori = "non";
+            $favori->save();
+        };
+        return redirect()->back();            
     }
 }

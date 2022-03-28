@@ -20,6 +20,7 @@ class PhotoFactory extends Factory
             "nom"=> $this->faker->lastName(),
             "lien"=>$this->faker->url(),
             "album"=>$this->faker->firstName(),
+            "favori"=>"non"
             //
         ];
     }

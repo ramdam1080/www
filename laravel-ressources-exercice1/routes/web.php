@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,13 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('user');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::resource("user",UserController::class);
-Route::get('/album', function () {
-    return view('pages/album');
-});
-Route::get('/photo', function () {
-    return view('pages/photo');
-});
+Route::resource("album",AlbumController::class);
+Route::resource("photo",PhotoController::class);
+Route::post("/favori{id}",[PhotoController::class,"favori"])->name("photo.favori");
+
+

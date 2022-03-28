@@ -3,6 +3,16 @@
 @section('content')
 <div class="container">
     <div class="my-5" style="background-color: rgb(0, 0, 0,0.7); padding: 40px">
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $item)
+                  <li>{{ $item }}</li> 
+              @endforeach    
+          </ul>    
+      </div>    
+
+  @endif
 <form method="POST" action="{{ route("user.store") }}">
     @csrf
     <div class="mb-3">

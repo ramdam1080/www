@@ -39,6 +39,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User;
+        $request->validate([
+            "nom"=>"required",
+            "prenom"=>"required",
+            "age"=>"required|integer",
+            "naissance"=>"required|date",
+            "email"=>"required|email",
+            "password"=>"required",
+            "album"=>"required|integer",
+        ]);
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
         $user->age = $request->age;
@@ -85,6 +94,15 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $request->validate([
+            "nom"=>"required",
+            "prenom"=>"required",
+            "age"=>"required|integer",
+            "naissance"=>"required|date",
+            "email"=>"required|email",
+            "password"=>"required",
+            "album"=>"required|integer",
+        ]);
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
         $user->age = $request->age;
